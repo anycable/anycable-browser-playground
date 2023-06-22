@@ -8,10 +8,15 @@
   <link rel="icon" type="image/png" href="/favicon-16x16.png" sizes="16x16"/>
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
-    function loadAnyCable () {
+    function IsIE() {
       var myNav = navigator.userAgent.toLowerCase();
-      var isIE = (myNav.indexOf('msie') != -1 || myNav.indexOf('trident') != -1) ||
+
+      return (myNav.indexOf('msie') != -1 || myNav.indexOf('trident') != -1) ||
         window.location.href.indexOf('forceIE') > -1;
+    }
+
+    function loadAnyCable () {
+      var isIE = IsIE();
 
       src = "./build/anycable.es6.js";
 
@@ -25,6 +30,16 @@
     }
 
     loadAnyCable();
+
+    // Hide SVGs from the DOM, they look ugly in IE
+    document.addEventListener("DOMContentLoaded", function() {
+      var elements = document.querySelectorAll("svg");
+      var elementsArray = Array.prototype.slice.call(elements);
+
+      elementsArray.forEach(function(element) {
+        element.style.display = "none";
+      });
+    });
   </script>
 </head>
 <body>
