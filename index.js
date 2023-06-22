@@ -73,7 +73,7 @@
 
   var cable = null;
   var channel = null;
-  var url = "ws://localhost:8080/cable";
+  var url = localStorage.getItem("url") || "ws://localhost:8080/cable";
 
   var options = {
     logLevel: "debug",
@@ -116,11 +116,16 @@
 
     // Customize options from form elements
     url = form.querySelector("input[name='url']").value;
+    localStorage.setItem("url", url);
+
     options.logLevel = form.querySelector("select[name='logLevel']").value;
     options.protocol = form.querySelector("select[name='protocol']").value;
 
     connect();
   });
+
+  var urlInput = form.querySelector("input[name='url']");
+  urlInput.value = url;
 
   var echoButton = document.getElementById("echoBtn");
   echoButton.addEventListener("click", function (event) {
