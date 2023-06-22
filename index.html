@@ -31,15 +31,26 @@
 
     loadAnyCable();
 
-    // Hide SVGs from the DOM, they look ugly in IE
-    document.addEventListener("DOMContentLoaded", function() {
-      var elements = document.querySelectorAll("svg");
-      var elementsArray = Array.prototype.slice.call(elements);
+    if (IsIE()) {
+      // Hide SVGs from the DOM, they look ugly in IE
+      document.addEventListener("DOMContentLoaded", function() {
+        var elements = document.querySelectorAll("svg");
+        var elementsArray = Array.prototype.slice.call(elements);
 
-      elementsArray.forEach(function(element) {
-        element.style.display = "none";
+        elementsArray.forEach(function(element) {
+          element.style.display = "none";
+        });
+
+        var left = document.querySelector(".main > div:first-child");
+        var right = document.querySelector(".main > div:nth-child(2)");
+
+        left.style.width = "49%";
+        left.style.display = "inline-block";
+        left.style.verticalAlign = "top";
+        right.style.width = "49%";
+        right.style.display = "inline-block";
       });
-    });
+    }
   </script>
 </head>
 <body>
