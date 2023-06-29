@@ -69,16 +69,25 @@
 
   logger.log = log.bind(logger);
 
-  // ActionCable setup
-
   var cable = null;
   var channel = null;
-  var url = localStorage.getItem("url") || "ws://localhost:8080/cable";
+  var url = "ws://localhost:8080/cable";
 
   var options = {
     logLevel: "debug",
     logger: logger,
   };
+
+  function setupTransport(type, formOptions) {
+    switch (type) {
+      case "lp":
+        var lpURL =
+          formOptions.lpUrl ||
+          formOptions.url.replace(/^ws/, "http").replace("/cable", "/lp");
+        // TODO: support other options
+        return new LongPollingTransport(lpURL);
+    }
+  }
 
   function connect() {
     if (cable) return;
@@ -114,18 +123,61 @@
   form.addEventListener("submit", function (event) {
     event.preventDefault();
 
-    // Customize options from form elements
-    url = form.querySelector("input[name='url']").value;
-    localStorage.setItem("url", url);
+    var formData = FormerJS.parse(form);
+    localStorage.setItem("__any_form", JSON.stringify(formData));
 
-    options.logLevel = form.querySelector("select[name='logLevel']").value;
-    options.protocol = form.querySelector("select[name='protocol']").value;
+    // Customize options from form elements
+    url = formData.url;
+
+    // Assign all options from form that can be assigned as literals
+    options = Object.assign({}, options, formData);
+
+    var selectedTransports = Object.keys(formData.transports).filter(function (
+      k
+    ) {
+      return formData.transports[k];
+    });
+
+    if (
+      selectedTransports.length === 0 ||
+      (selectedTransports.length === 1 && selectedTransports.indexOf("ws") > -1)
+    ) {
+      console.log("Using default transport");
+    } else if (selectedTransports.length === 1) {
+      var t = setupTransport(selectedTransports[0], formData);
+
+      if (!t) {
+        throw "Unknown transport: " + selectedTransports[0];
+      }
+
+      options.transport = t;
+    }
+
+    if (selectedTransports.length > 1) {
+      var defaultTransport = selectedTransports[0];
+
+      if (defaultTransport !== "ws") {
+        options.transport = setupTransport(defaultTransport, formData);
+      }
+
+      var fallbacks = [];
+
+      for (var i = 1; i < selectedTransports.length; i++) {
+        fallbacks.push(setupTransport(selectedTransports[i], formData));
+      }
+
+      options.fallbacks = fallbacks;
+    }
 
     connect();
   });
 
-  var urlInput = form.querySelector("input[name='url']");
-  urlInput.value = url;
+  // Restore form data
+  var cachedFormData = JSON.parse(localStorage.getItem("__any_form") || "null");
+  if (cachedFormData) {
+    FormerJS.clear(form);
+    FormerJS.fill(form, {}, cachedFormData);
+  }
 
   var echoButton = document.getElementById("echoBtn");
   echoButton.addEventListener("click", function (event) {

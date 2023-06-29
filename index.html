@@ -52,6 +52,7 @@
       });
     }
   </script>
+  <script src="./former.js"></script>
 </head>
 <body>
   <div class="relative h-full min-h-screen w-full overflow-hidden bg-gray-50 p-6 sm:py-12">
@@ -64,13 +65,33 @@
             <input type="text" name="url" placeholder="Cable URL" value="ws://localhost:8080/cable" class="focus:shadow-outline w-full appearance-none rounded border px-2 py-1 leading-tight text-gray-700 focus:outline-none" />
           </div>
           <div class="mb-2 flex w-full flex-row items-baseline">
+            <label class="mr-2 font-bold text-blue-700">Transports:</label>
+            <div class="flex flex-row items-baseline">
+              <input checked name="transports.ws" type="checkbox" value="1" class="h-4 w-4 rounded border-gray-300 bg-gray-100 text-blue-700 focus:ring-2 focus:ring-blue-600" />
+              <label class="ml-1">
+                WebSockets
+              </label>
+
+              <input name="transports.lp" type="checkbox" value="1" class="ml-2 h-4 w-4 rounded border-gray-300 bg-gray-100 text-blue-700 focus:ring-2 focus:ring-blue-600" />
+              <label class="ml-1">
+                Long polling
+              </label>
+            <!--
+              <input id="transports.sse" type="checkbox" value="1" class="ml-2 h-4 w-4 rounded border-gray-300 bg-gray-100 text-blue-700 focus:ring-2 focus:ring-blue-600" />
+              <label class="ml-1">
+                SSE
+              </label> -->
+            </div>
+          </div>
+
+          <div class="mb-2 flex w-full flex-row items-baseline">
             <label class="mr-2 font-bold text-blue-700">Protocol:</label>
             <div class="relative inline-block w-64 grow">
               <select name="protocol" class="focus:shadow-outline w-full appearance-none rounded border px-2 py-1 leading-tight text-gray-700 focus:outline-none">
-                <option>actioncable-v1-json</option>
-                <option>actioncable-v1-ext-json</option>
-                <!-- <option>actioncable-v1-msgpack</option> -->
-                <!-- <option>actioncable-v1-protobuf</option> -->
+                <option value="actioncable-v1-json">actioncable-v1-json</option>
+                <option value="actioncable-v1-ext-json">actioncable-v1-ext-json</option>
+                <!-- <option value="actioncable-v1-msgpack">actioncable-v1-msgpack</option> -->
+                <!-- <option value="actioncable-v1-protobuf">actioncable-v1-protobuf</option> -->
               </select>
               <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
                 <svg class="h-4 w-4 fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z" /></svg>
@@ -81,10 +102,10 @@
             <label class="mr-2 font-bold text-blue-700">Log level:</label>
             <div class="relative inline-block w-64 grow">
               <select name="logLevel" class="focus:shadow-outline w-full appearance-none rounded border px-2 py-1 leading-tight text-gray-700 focus:outline-none">
-                <option>debug</option>
-                <option>info</option>
-                <option>warn</option>
-                <option>error</option>
+                <option name="debug">debug</option>
+                <option name="info">info</option>
+                <option name="warn">warn</option>
+                <option name="error">error</option>
               </select>
               <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
                 <svg class="h-4 w-4 fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z" /></svg>
