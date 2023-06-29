@@ -3,9 +3,6 @@
     [
       "@babel/preset-env",
       {
-        "targets": {
-          "browsers": ["> 1%", "IE >= 10"]
-        },
         "corejs": 3,
         "useBuiltIns": "usage"
       }
