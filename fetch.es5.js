@@ -1,5 +1,2 @@
-const EventTargetPolyfill = require("@mattkrick/event-target-polyfill");
-window.EventTarget = EventTargetPolyfill;
-
-require("yet-another-abortcontroller-polyfill");
-require("whatwg-fetch");
+import "whatwg-fetch";
+import "abortcontroller-polyfill/dist/polyfill-patch-fetch";

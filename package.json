@@ -9,7 +9,6 @@
     "@babel/cli": "^7.22.5",
     "@babel/plugin-transform-runtime": "^7.22.5",
     "@babel/preset-env": "^7.22.5",
-    "@mattkrick/event-target-polyfill": "^0.1.0",
     "browserify": "^17.0.0",
     "core-js": "^3.31.0",
     "esbuild": "0.18.6",
@@ -20,7 +19,7 @@
     "@anycable/core": "https://gitpkg.now.sh/anycable/anycable-client/packages/core?feat/polling",
     "@anycable/long-polling": "https://gitpkg.now.sh/anycable/anycable-client/packages/long-polling?feat/polling",
     "@anycable/web": "^0.7.0",
-    "whatwg-fetch": "^3.6.2",
-    "yet-another-abortcontroller-polyfill": "^0.0.4"
+    "abortcontroller-polyfill": "^1.7.5",
+    "whatwg-fetch": "^3.6.2"
   }
 }
