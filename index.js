@@ -132,6 +132,7 @@
     // Assign all options from form that can be assigned as literals
     options = Object.assign({}, options, formData);
 
+    // Configure transports
     var selectedTransports = Object.keys(formData.transports).filter(function (
       k
     ) {
@@ -167,6 +168,17 @@
       }
 
       options.fallbacks = fallbacks;
+    }
+
+    // Configure history timestamp
+    if (formData.historyTimestamp) {
+      var mins = (formData.historyTimestamp.match(/(\d+)m/) || [])[1] || 0;
+      if (mins) {
+        options.historyTimestamp =
+          ((new Date().getTime() - mins * 60 * 1000) / 1000) | 0;
+      }
+    } else {
+      options.historyTimestamp = false;
     }
 
     connect();
