@@ -1,6 +1,5 @@
-import EventTargetPolyfill from "@mattkrick/event-target-polyfill";
-window.EventTargetPolyfill = EventTargetPolyfill;
+const EventTargetPolyfill = require("@mattkrick/event-target-polyfill");
 window.EventTarget = EventTargetPolyfill;
 
-import "yet-another-abortcontroller-polyfill";
-import "whatwg-fetch";
+require("yet-another-abortcontroller-polyfill");
+require("whatwg-fetch");

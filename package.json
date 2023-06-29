@@ -1,7 +1,7 @@
 {
   "scripts": {
     "build": "npm run build:es6 && npm run build:es5",
-    "build:es5": "esbuild fetch.es5.js anycable.js --bundle --target=es6 --outdir=./build/es5 && babel build/es5/fetch.es5.js build/es5/anycable.js -o build/anycable.tmp.js && browserify build/anycable.tmp.js --outfile build/anycable.es5.js && rm -rf build/anycable.tmp.js build/es5",
+    "build:es5": "esbuild fetch.es5.js anycable.js --bundle --target=es6 --platform=browser --outdir=./build/es5 && babel build/es5/fetch.es5.js build/es5/anycable.js -o build/anycable.tmp.js && browserify build/anycable.tmp.js --outfile build/anycable.es5.js && rm -rf build/anycable.tmp.js build/es5",
     "build:es6": "esbuild anycable.js --bundle --target=es6 --outfile=./build/anycable.es6.js",
     "serve": "nodemon --watch . --ignore node_modules --ignore build -e js --exec 'npm run build && http-server -c-1 -p 4444 --'"
   },
