@@ -16,8 +16,8 @@
     "nodemon": "^2.0.22"
   },
   "dependencies": {
-    "@anycable/core": "https://gitpkg.now.sh/anycable/anycable-client/packages/core?feat/polling",
-    "@anycable/long-polling": "https://gitpkg.now.sh/anycable/anycable-client/packages/long-polling?feat/polling",
+    "@anycable/core": "^0.7.1",
+    "@anycable/long-polling": "^0.1.0",
     "@anycable/web": "^0.7.0",
     "abortcontroller-polyfill": "^1.7.5",
     "whatwg-fetch": "^3.6.2"
