@@ -1,7 +1,7 @@
 {
   "scripts": {
     "build": "npm run build:es6 && npm run build:es5",
-    "build:es5": "babel build/anycable.es6.js -o build/anycable.tmp.js && browserify build/anycable.tmp.js --outfile build/anycable.es5.js && rm build/anycable.tmp.js",
+    "build:es5": "babel fetch.es5.js build/anycable.es6.js -o build/anycable.tmp.js && browserify build/anycable.tmp.js --outfile build/anycable.es5.js && rm build/anycable.tmp.js",
     "build:es6": "esbuild anycable.js --bundle --target=es6 --outfile=./build/anycable.es6.js",
     "serve": "nodemon --watch . --ignore node_modules --ignore build -e js --exec 'npm run build && http-server -c-1 -p 4444 --'"
   },
@@ -18,6 +18,8 @@
   "dependencies": {
     "@anycable/core": "https://gitpkg.now.sh/anycable/anycable-client/packages/core?feat/polling",
     "@anycable/long-polling": "https://gitpkg.now.sh/anycable/anycable-client/packages/long-polling?feat/polling",
-    "@anycable/web": "^0.7.0"
+    "@anycable/web": "^0.7.0",
+    "whatwg-fetch": "^3.6.2",
+    "yet-another-abortcontroller-polyfill": "^0.0.4"
   }
 }
