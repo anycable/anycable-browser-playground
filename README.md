@@ -2,9 +2,13 @@
 
 This project aims to help in testing different AnyCable features via browsers (primarly, [anycable-client][] features).
 
-You can try it here: [play.anycable.io](https://play.anycable.io).
+## Public version
 
-## Usage
+You can try the playground here: [play.anycable.io](https://play.anycable.io).
+
+**NOTE:** In order to connect to your local server, you must run the server with TLS (`wss://`) enabled. You can configure SSL yourself or use a proxy, like [puma-dev](https://github.com/puma/puma-dev).
+
+## Running locally
 
 You can run the project locally, too:
 
