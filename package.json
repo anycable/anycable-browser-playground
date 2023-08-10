@@ -16,7 +16,7 @@
     "nodemon": "^2.0.22"
   },
   "dependencies": {
-    "@anycable/core": "^0.7.1",
+    "@anycable/core": "^0.7.4",
     "@anycable/long-polling": "^0.1.0",
     "@anycable/web": "^0.7.0",
     "abortcontroller-polyfill": "^1.7.5",

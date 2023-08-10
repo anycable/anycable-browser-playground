@@ -213,4 +213,32 @@
 
   var disconnectButton = document.getElementById("disconnectButton");
   disconnectButton.addEventListener("click", disconnect);
+
+  var protocolsSelect = document.querySelector("select[name=protocol]");
+  var currentProtocol = protocolsSelect.value;
+
+  document
+    .querySelectorAll("[data-protocol-" + currentProtocol + "]")
+    .forEach(function (el) {
+      el.style.display = "";
+    });
+  protocolsSelect.addEventListener("change", function (event) {
+    var selectedProtocol = event.target.value;
+
+    if (selectedProtocol === currentProtocol) return;
+
+    document
+      .querySelectorAll("[data-protocol-" + currentProtocol + "]")
+      .forEach(function (el) {
+        el.style.display = "none";
+      });
+
+    currentProtocol = selectedProtocol;
+
+    document
+      .querySelectorAll("[data-protocol-" + currentProtocol + "]")
+      .forEach(function (el) {
+        el.style.display = "";
+      });
+  });
 })();
