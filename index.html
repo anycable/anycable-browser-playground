@@ -90,15 +90,17 @@
               <select name="protocol" class="focus:shadow-outline w-full appearance-none rounded border px-2 py-1 leading-tight text-gray-700 focus:outline-none">
                 <option value="actioncable-v1-json">actioncable-v1-json</option>
                 <option value="actioncable-v1-ext-json">actioncable-v1-ext-json</option>
-                <!-- <option value="actioncable-v1-msgpack">actioncable-v1-msgpack</option> -->
-                <!-- <option value="actioncable-v1-protobuf">actioncable-v1-protobuf</option> -->
+                <option value="actioncable-v1-msgpack">actioncable-v1-msgpack</option>
+                <option value="actioncable-v1-ext-msgpack">actioncable-v1-ext-msgpack</option>
+                <option value="actioncable-v1-protobuf">actioncable-v1-protobuf</option>
+                <option value="actioncable-v1-ext-protobuf">actioncable-v1-ext-protobuf</option>
               </select>
               <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
                 <svg class="h-4 w-4 fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z" /></svg>
               </div>
             </div>
           </div>
-          <div data-protocol-actioncable-v1-ext-json style="display: none;" class="mb-2 flex w-full flex-row items-center">
+          <div data-protocol-actioncable-v1-ext-json data-protocol-actioncable-v1-ext-msgpack data-protocol-actioncable-v1-ext-protobuf style="display: none;" class="mb-2 flex w-full flex-row items-center">
             <div class="flex flex-row items-center">
               <label class="mr-2 font-bold text-blue-700">Initial streams history since:</label>
               <div class="relative inline-block w-64 grow">

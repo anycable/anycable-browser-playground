@@ -171,14 +171,27 @@
     }
 
     // Configure history timestamp
-    if (formData.historyTimestamp) {
-      var mins = (formData.historyTimestamp.match(/(\d+)m/) || [])[1] || 0;
+    if (formData.protocolOptions && formData.protocolOptions.historyTimestamp) {
+      var mins =
+        (formData.protocolOptions.historyTimestamp.match(/(\d+)m/) || [])[1] ||
+        0;
       if (mins) {
-        options.historyTimestamp =
+        options.protocolOptions.historyTimestamp =
           ((new Date().getTime() - mins * 60 * 1000) / 1000) | 0;
       }
     } else {
-      options.historyTimestamp = false;
+      options.protocolOptions = options.protocolOptions || {};
+      options.protocolOptions.historyTimestamp = false;
+    }
+
+    if (options.protocol.match(/msgpack/)) {
+      options.encoder = new MsgpackEncoder();
+    }
+
+    if (options.protocol.match(/protobuf/)) {
+      if (options.protocol.match(/v1-ext-/))
+        options.encoder = new ProtobufEncoderV2();
+      else options.encoder = new ProtobufEncoder();
     }
 
     connect();

@@ -16,9 +16,11 @@
     "nodemon": "^2.0.22"
   },
   "dependencies": {
-    "@anycable/core": "^0.7.4",
+    "@anycable/core": "^0.7.5",
     "@anycable/long-polling": "^0.1.0",
     "@anycable/web": "^0.7.0",
+    "@anycable/msgpack-encoder": "0.3.1",
+    "@anycable/protobuf-encoder": "^0.4.0",
     "abortcontroller-polyfill": "^1.7.5",
     "whatwg-fetch": "^3.6.2"
   }
