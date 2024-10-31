@@ -103,13 +103,27 @@
   function echo(content) {
     if (!channel) return;
 
-    channel.perform("echo", { message: content });
+    var data = { message: content };
+
+    // If content is a valid JSON, parse it and use
+    try {
+      data = JSON.parse(content);
+    } catch (e) { }
+
+    channel.perform("echo", data);
   }
 
   function broadcast(content) {
     if (!channel) return;
 
-    channel.perform("broadcast", { message: content });
+    var data = { message: content };
+
+    // If content is a valid JSON, parse it and use
+    try {
+      data = JSON.parse(content);
+    } catch (e) { }
+
+    channel.perform("broadcast", data);
   }
 
   function disconnect() {
